@@ -13,7 +13,7 @@ namespace DotNetCore
         private static void Main(string[] args)
         {
             // "unit testing" (lol) the runs if it can run
-            var test = new SmallStringCollection();
+            var test = new SimplePoco();
             var y = test.SerializeJson();
             y = test.SerializeJson();
             y = test.SerializeGzJson();

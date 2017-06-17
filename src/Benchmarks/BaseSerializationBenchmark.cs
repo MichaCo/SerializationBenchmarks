@@ -65,10 +65,9 @@ namespace Benchmarks
             using (var writer = new JsonTextWriter(new StreamWriter(ms, Encoding.UTF8, 1024, true)))
             {
                 _serializer.Serialize(writer, value, value.GetType());
-
-                result = ms.ToArray();
             }
 
+            result = ms.ToArray();
             _memoryStreamPool.Return(ms);
             return result;
         }
@@ -86,9 +85,9 @@ namespace Benchmarks
 
                 // need to flush
                 writer.Flush();
-                result = ms.ToArray();
             }
 
+            result = ms.ToArray();
             _memoryStreamPool.Return(ms);
             return result;
         }

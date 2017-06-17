@@ -6,30 +6,42 @@ The following serializer libraries are benchmarked:
 * Newtonsoft.Json https://github.com/JamesNK/Newtonsoft.Json
 * Bond https://github.com/Microsoft/bond
 
-## Benchmarks
-
-### Collection of Strings
-A simple collection of random strings (using `Guid.NewGuid.ToString()` n-times).
-
-There are three benchmarks, one for a small collection (100 items), medium (1000 items) and large (10000 items).
-
-### TBD
-Other tests TBD
-
-* e.g. complex POCO with nested collections of POCOs...
-
 ## Results
 
 See [BenchmarkDotNet.Artifacts/results](https://github.com/MichaCo/SerializationBenchmarks/tree/master/src/BenchmarkRunner/BenchmarkDotNet.Artifacts/results)
 
-### Current Rankings
+## Benchmarks
+
+### 1. Collection of Strings
+A simple collection of random strings (using `Guid.NewGuid.ToString()` n-times).
+
+There are three benchmarks, one for a small collection (100 items), medium (1000 items) and large (10000 items).
+
+#### Results
 1. Bond
 2. Protobuf-net
 3. Json
 4. Json + GZ compression - ofc this is slower, GZ compression could be applied to all of the tests. To see the effect in general I think one time is enough.
 
-Interestingly, Bond is slightly faster AND produces slightly smaller output then protobuf-net.
+Interestingly, Bond is slightly faster AND produces slightly smaller output then protobuf-net. Fast/Compact Bond seems not to make a big difference for this use-case.
 
+### 2. Simple Poco
+Testing a simple Poco with a few properties. Each benchmark run uses one object instance (400-500bytes).
+
+#### Results
+1. Fast Bond
+2. Compact Bond
+3. Protobuf-net
+4. Json
+
+* In this benchmark, there is a noticeable difference between fast (10% faster) and compact (2-3% smaller) bond in terms of performance and size.
+* Fun fact, the size of gz compressed Json is only marginally smaller than Bond/Protobuf but 22+ times slower
+
+---
+
+Other tests TBD
+
+* e.g. complex POCO with nested collections of POCOs...
 
 ## Implementation Details
 
