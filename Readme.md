@@ -20,7 +20,7 @@ Other tests TBD
 
 ## Results
 
-See BenchmarkDotNet.Artifacts/results
+See [BenchmarkDotNet.Artifacts/results](https://github.com/MichaCo/SerializationBenchmarks/tree/master/src/BenchmarkRunner/BenchmarkDotNet.Artifacts/results)
 
 ### Current Rankings
 1. Bond
