@@ -18,6 +18,13 @@ A simple collection of random strings (using `Guid.NewGuid.ToString()` n-times).
 There are three benchmarks, one for a small collection (100 items), medium (1000 items) and large (10000 items).
 
 #### Results
+
+* [Large Collection](https://github.com/MichaCo/SerializationBenchmarks/blob/master/src/BenchmarkRunner/BenchmarkDotNet.Artifacts/results/LargeStringCollection-report-github.md)
+* [Medium Collection](https://github.com/MichaCo/SerializationBenchmarks/blob/master/src/BenchmarkRunner/BenchmarkDotNet.Artifacts/results/MediumStringCollection-report-github.md)
+* [Small Collection](https://github.com/MichaCo/SerializationBenchmarks/blob/master/src/BenchmarkRunner/BenchmarkDotNet.Artifacts/results/SmallStringCollection-report-github.md)
+
+#### Ranking
+
 1. Bond
 2. Protobuf-net
 3. Json
@@ -29,6 +36,11 @@ Interestingly, Bond is slightly faster AND produces slightly smaller output then
 Testing a simple Poco with a few properties. Each benchmark run uses one object instance (400-500bytes).
 
 #### Results
+
+* [Simple Poco results](https://github.com/MichaCo/SerializationBenchmarks/blob/master/src/BenchmarkRunner/BenchmarkDotNet.Artifacts/results/SimplePoco-report-github.md)
+
+#### Rankings
+
 1. Fast Bond
 2. Compact Bond
 3. Protobuf-net
