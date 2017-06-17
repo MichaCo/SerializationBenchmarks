@@ -41,8 +41,8 @@ namespace DotNetCore
                     .With(new SizeColumn())
 
                     .With(Job.Core
-                        .WithTargetCount(10)
-                        .WithWarmupCount(5)
+                        .WithTargetCount(1)
+                        .WithWarmupCount(1)
                         .WithLaunchCount(1));
 
                 //.With(Job.Clr

@@ -5,9 +5,9 @@ namespace Benchmarks
 {
     public class SimplePoco : BaseSerializationBenchmark<SimplePocoModel>
     {
-        private readonly SimplePocoModel _data;
+        private static readonly SimplePocoModel _data;
 
-        public SimplePoco()
+        static SimplePoco()
         {
             _data = SimplePocoModel.Create();
         }

@@ -5,9 +5,9 @@ namespace Benchmarks
 {
     public class SmallStringCollection : BaseSerializationBenchmark<StringCollectionModel>
     {
-        private readonly StringCollectionModel _data;
+        private static readonly StringCollectionModel _data;
 
-        public SmallStringCollection()
+        static SmallStringCollection()
         {
             _data = new StringCollectionModel() { Collection = Enumerable.Repeat(0, 100).Select(p => Guid.NewGuid().ToString()).ToArray() };
         }
