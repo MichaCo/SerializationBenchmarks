@@ -16,8 +16,11 @@ namespace Benchmarks
         private static JsonSerializer _serializer = new JsonSerializer();
         private static Bond.Serializer<CompactBinaryWriter<OutputBuffer>> _bondCompactSerializer = new Bond.Serializer<CompactBinaryWriter<OutputBuffer>>(typeof(T));
         private static Bond.Serializer<FastBinaryWriter<OutputBuffer>> _bondFastSerializer = new Bond.Serializer<FastBinaryWriter<OutputBuffer>>(typeof(T));
+        private static Bond.Serializer<SimpleBinaryWriter<OutputBuffer>> _bondSimpleSerializer = new Bond.Serializer<SimpleBinaryWriter<OutputBuffer>>(typeof(T));
+        private static Bond.Serializer<SimpleJsonWriter> _bondSimpleJsonSerializer = new Bond.Serializer<SimpleJsonWriter>(typeof(T));
         private static ObjectPool<OutputBuffer> _outputBufferPool = new ObjectPool<OutputBuffer>(new OutputBufferPoolPolicy(1024));
         private static ObjectPool<MemoryStream> _memoryStreamPool = new ObjectPool<MemoryStream>(new MemoryStreamPoolPolicy(1024));
+        private static ObjectPool<StringBuilder> _stringBuilderPool = new ObjectPool<StringBuilder>(new StringBuilderPoolPolicy(1024));
 
         [Benchmark]
         public int Json()
@@ -51,6 +54,20 @@ namespace Benchmarks
         public int BondFast()
         {
             var result = SerializeBondFast();
+            return result.Length;
+        }
+
+        [Benchmark]
+        public int BondSimple()
+        {
+            var result = SerializeBondSimple();
+            return result.Length;
+        }
+
+        [Benchmark]
+        public int BondJson()
+        {
+            var result = SerializeBondSimpleJson();
             return result.Length;
         }
 
@@ -141,6 +158,33 @@ namespace Benchmarks
             return bytes;
         }
 
+        public byte[] SerializeBondSimple()
+        {
+            var value = GetData();
+
+            var buffer = _outputBufferPool.Lease();
+            var writer = new SimpleBinaryWriter<OutputBuffer>(buffer);
+
+            _bondSimpleSerializer.Serialize(value, writer);
+            var bytes = buffer.Data.ToArray();
+            _outputBufferPool.Return(buffer);
+            return bytes;
+        }
+
+        public byte[] SerializeBondSimpleJson()
+        {
+            var value = GetData();
+
+            var ms = _memoryStreamPool.Lease();
+            var writer = new SimpleJsonWriter(ms);
+
+            _bondSimpleJsonSerializer.Serialize(value, writer);
+            writer.Flush();
+            var bytes = ms.ToArray();
+            _memoryStreamPool.Return(ms);
+            return bytes;
+        }
+
         private class OutputBufferPoolPolicy : IObjectPoolPolicy<OutputBuffer>
         {
             private readonly int _defaultBufferSize;
@@ -180,6 +224,27 @@ namespace Benchmarks
             {
                 value.SetLength(0);
                 value.Position = 0;
+                return true;
+            }
+        }
+
+        private class StringBuilderPoolPolicy : IObjectPoolPolicy<StringBuilder>
+        {
+            private readonly int _defaultBufferSize;
+
+            public StringBuilderPoolPolicy(int defaultBufferSize)
+            {
+                _defaultBufferSize = defaultBufferSize;
+            }
+
+            public StringBuilder CreateNew()
+            {
+                return new StringBuilder(_defaultBufferSize);
+            }
+
+            public bool Return(StringBuilder value)
+            {
+                value.Clear();
                 return true;
             }
         }

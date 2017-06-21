@@ -14,13 +14,15 @@ namespace DotNetCore
         {
             // "unit testing" (lol) the runs if it can run
             var test = new SimplePoco();
-            var y = test.SerializeJson();
-            y = test.SerializeJson();
-            y = test.SerializeGzJson();
-            y = test.SerializeGzJson();
-            var yResult = test.DeserializeGzJson(y);
-            y = test.SerializeBondCompact();
-            y = test.SerializeProtobuf();
+            var data = test.SerializeJson();
+            data = test.SerializeJson();
+            data = test.SerializeGzJson();
+            data = test.SerializeGzJson();
+            var yResult = test.DeserializeGzJson(data);
+            var dbond = test.SerializeBondCompact();
+            var dproto = test.SerializeProtobuf();
+            var dbondFast = test.SerializeBondFast();
+            var dbondJson = test.SerializeBondSimpleJson();
 
             do
             {
@@ -41,8 +43,8 @@ namespace DotNetCore
                     .With(new SizeColumn())
 
                     .With(Job.Core
-                        .WithTargetCount(1)
-                        .WithWarmupCount(1)
+                        .WithTargetCount(20)
+                        .WithWarmupCount(3)
                         .WithLaunchCount(1));
 
                 //.With(Job.Clr

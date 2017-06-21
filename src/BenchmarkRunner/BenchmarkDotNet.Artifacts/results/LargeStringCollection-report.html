@@ -18,20 +18,22 @@ Processor=Intel Core i7-6700 CPU 3.40GHz (Skylake), ProcessorCount=8
 Frequency=3328124 Hz, Resolution=300.4696 ns, Timer=TSC
 dotnet cli version=1.0.4
   [Host]     : .NET Core 4.6.25211.01, 64bit RyuJIT
-  Job-FXKJYR : .NET Core 4.6.25211.01, 64bit RyuJIT
+  Job-QZBHBE : .NET Core 4.6.25211.01, 64bit RyuJIT
 </code></pre>
-<pre><code>Runtime=Core  LaunchCount=1  TargetCount=10  
-WarmupCount=5  
+<pre><code>Runtime=Core  LaunchCount=1  TargetCount=20  
+WarmupCount=3  
 </code></pre>
 
 <table>
 <thead><tr><th>Method</th><th>   Mean</th><th>Error</th><th>StdDev</th><th> Median</th><th>Op/s</th><th>Scaled</th><th>ScaledSD</th><th>Rank</th><th>Size</th><th>Gen 0</th><th>Gen 1</th><th>Gen 2</th><th>Allocated</th>
 </tr>
-</thead><tbody><tr><td> Json</td><td>1,808.3862 us</td><td>8.8400 us</td><td>3.9250 us</td><td>1,807.8351 us</td><td>552.98</td><td>1.95</td><td>0.01</td><td>4</td><td>380kb</td><td>79.6875</td><td>79.6875</td><td>79.6875</td><td>0.4 MB</td>
-</tr><tr><td>GzJson</td><td>9,286.7878 us</td><td>61.8325 us</td><td>40.8984 us</td><td>9,298.0953 us</td><td>107.68</td><td>10.04</td><td>0.05</td><td>5</td><td>205,05kb</td><td>-</td><td>-</td><td>-</td><td>0.22 MB</td>
-</tr><tr><td>Protobuf</td><td>925.3154 us</td><td>4.6702 us</td><td>3.0890 us</td><td>926.1530 us</td><td>1080.71</td><td>1.00</td><td>0.00</td><td>3</td><td>371,09kb</td><td>95.1172</td><td>95.1172</td><td>95.1172</td><td>0.38 MB</td>
-</tr><tr><td>BondCompact</td><td>826.7958 us</td><td>12.8269 us</td><td>8.4842 us</td><td>823.9271 us</td><td>1209.49</td><td>0.89</td><td>0.01</td><td>1</td><td>361,33kb</td><td>97.4609</td><td>97.4609</td><td>97.4609</td><td>0.37 MB</td>
-</tr><tr><td>BondFast</td><td>841.4146 us</td><td>16.7085 us</td><td>11.0516 us</td><td>841.5243 us</td><td>1188.47</td><td>0.91</td><td>0.01</td><td>2</td><td>361,33kb</td><td>95.8984</td><td>95.8984</td><td>95.8984</td><td>0.37 MB</td>
+</thead><tbody><tr><td> Json</td><td>1,890.4001 us</td><td>18.8587 us</td><td>21.7177 us</td><td>1,885.0460 us</td><td>528.99</td><td>2.00</td><td>0.03</td><td>5</td><td>380,88kb</td><td>95.3125</td><td>95.3125</td><td>95.3125</td><td>0.4 MB</td>
+</tr><tr><td>GzJson</td><td>9,237.1423 us</td><td>65.9004 us</td><td>67.6749 us</td><td>9,242.9805 us</td><td>108.26</td><td>9.79</td><td>0.11</td><td>6</td><td>205,02kb</td><td> -</td><td> -</td><td> -</td><td>0.22 MB</td>
+</tr><tr><td>Protobuf</td><td>943.2642 us</td><td>7.2755 us</td><td>8.0867 us</td><td>941.9925 us</td><td>1060.15</td><td>1.00</td><td>0.00</td><td>3</td><td>371,09kb</td><td>103.1250</td><td>103.1250</td><td>103.1250</td><td>0.38 MB</td>
+</tr><tr><td>BondCompact</td><td>841.2322 us</td><td>8.0441 us</td><td>9.2636 us</td><td>841.1293 us</td><td>1188.73</td><td>0.89</td><td>0.01</td><td>1</td><td>361,33kb</td><td>104.2969</td><td>104.2969</td><td>104.2969</td><td>0.37 MB</td>
+</tr><tr><td>BondFast</td><td>858.0048 us</td><td>13.0494 us</td><td>14.5043 us</td><td>858.7767 us</td><td>1165.49</td><td>0.91</td><td>0.02</td><td>2</td><td>361,33kb</td><td>104.2969</td><td>104.2969</td><td>104.2969</td><td>0.37 MB</td>
+</tr><tr><td>BondSimple</td><td>853.0181 us</td><td>7.7148 us</td><td>8.2548 us</td><td>849.3305 us</td><td>1172.31</td><td>0.90</td><td>0.01</td><td>2</td><td>390,63kb</td><td>117.9688</td><td>117.9688</td><td>117.9688</td><td>0.4 MB</td>
+</tr><tr><td>BondJson</td><td>1,184.2974 us</td><td>7.6208 us</td><td>7.8260 us</td><td>1,184.7757 us</td><td>844.38</td><td>1.26</td><td>0.01</td><td>4</td><td>380,88kb</td><td>95.3125</td><td>95.3125</td><td>95.3125</td><td>0.4 MB</td>
 </tr></tbody></table>
 </body>
 </html>
